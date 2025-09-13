@@ -1,22 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Telegram Directory — MVP
 
-## Getting Started
+A clean, fast directory where Telegram group and channel owners can list, verify, and promote their communities. Users can discover groups via search, tags, categories and join via invite links; admins verify ownership through a Telegram bot.
 
-First, run the development server:
+## Stack
+- Next.js + Tailwind CSS
+- Node.js + Telegraf.js
+- PostgreSQL (or Firebase/Firestore)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Environment Variables
+```env
+TELEGRAM_BOT_TOKEN=xxxx
+DATABASE_URL=postgres://...
+NEXT_PUBLIC_BASE_URL=https://staging.example.com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
+```bash
+# Install dependencies
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Run the development server
+npm run dev
+
+# Start the Telegram bot (once implemented)
+node server/bot.js
+```
+
+## Features
+- Bot verification ensures only admins can publish
+- Group submission with title, description, category, tags
+- Search and filter by tags, categories, language
+- Admin dashboard for managing listings
+- Bump functionality to promote listings
+- Join via invite links
+- Staging watermark (enabled when NODE_ENV !== 'production')
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
