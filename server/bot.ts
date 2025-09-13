@@ -35,7 +35,7 @@ bot.command('verify', async (ctx) => {
     // Get chat member info to verify admin status
     const chatMember = await ctx.telegram.getChatMember(
       verification.group.telegramGroupId,
-      ctx.from.id.toString()
+      ctx.from.id
     )
 
     if (!['creator', 'administrator'].includes(chatMember.status)) {

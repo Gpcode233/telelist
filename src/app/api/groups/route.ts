@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const token = Math.random().toString(36).substring(2, 15)
 
     // Create the group and verification records in a transaction
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: typeof prisma) => {
       const group = await tx.group.create({
         data: {
           ...validatedData,
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof z.ZodError ? error.errors : 'Internal server error',
+        error: error instanceof z.ZodError ? error.issues : 'Internal server error',
       },
       { status: error instanceof z.ZodError ? 400 : 500 }
     )
