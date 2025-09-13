@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  telegramId  String   @unique
+  displayName String
+  email       String?
+  createdAt   DateTime @default(now())
+  groups      Group[]
+  bumps       Bump[]
+}
+
+model Group {
+  id              String   @id @default(cuid())
+  telegramGroupId String   @unique
+  title           String
+  description     String
+  tags           String[]
+  category        String
+  language        String
+  nsfw            Boolean  @default(false)
+  avatarUrl       String?
+  membersCount    Int      @default(0)
+  avgRating       Float?
+  reviewCount     Int      @default(0)
+  status          String   @default("pending") // pending/approved/suspended
+  bumpedAt        DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  owner           User     @relation(fields: [ownerId], references: [id])
+  ownerId         String
+  verifications   Verification[]
+  bumps           Bump[]
+}
+
+model Verification {
+  id            String    @id @default(cuid())
+  group         Group     @relation(fields: [groupId], references: [id])
+  groupId       String
+  telegramUserId String
+  verifiedAt    DateTime?
+  method        String
+  token         String    @unique
+  createdAt     DateTime  @default(now())
+}
+
+model Bump {
+  id        String   @id @default(cuid())
+  group     Group    @relation(fields: [groupId], references: [id])
+  groupId   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  bumpedAt  DateTime @default(now())
+}

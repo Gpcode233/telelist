@@ -1,23 +1,72 @@
+import Header from '@/components/Header'
+import GroupCard from '@/components/GroupCard'
 import Image from "next/image";
+
+// Temporary mock data until we integrate with the database
+const mockGroups = [
+  {
+    id: '1',
+    title: 'Tech Enthusiasts',
+    description: 'A community for discussing the latest in technology, programming, and digital innovation.',
+    tags: ['tech', 'programming', 'innovation'],
+    membersCount: 1500,
+    bumpedAt: new Date(),
+    language: 'English',
+    nsfw: false,
+  },
+  {
+    id: '2',
+    title: 'Digital Artists',
+    description: 'Share your artwork, get feedback, and connect with other digital artists.',
+    tags: ['art', 'digital', 'creative'],
+    membersCount: 2300,
+    bumpedAt: new Date(Date.now() - 3600000), // 1 hour ago
+    language: 'English',
+    nsfw: false,
+  },
+]
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
+    <main>
+      <Header />
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="space-y-8">
+          <section>
+            <h2 className="mb-6 text-2xl font-bold text-gray-900">Popular Categories</h2>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {['Technology', 'Art', 'Gaming', 'Education', 'Business', 'Entertainment'].map((category) => (
+                <a
+                  key={category}
+                  href={`/category/${category.toLowerCase()}`}
+                  className="flex aspect-square items-center justify-center rounded-lg bg-gray-100 p-4 text-center font-medium text-gray-900 hover:bg-gray-200"
+                >
+                  {category}
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Recently Bumped</h2>
+              <a
+                href="/groups"
+                className="text-sm font-medium text-primary-600 hover:text-primary-500"
+              >
+                View all
+              </a>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {mockGroups.map((group) => (
+                <GroupCard key={group.id} {...group} />
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  )
             .
           </li>
           <li className="tracking-[-.01em]">
