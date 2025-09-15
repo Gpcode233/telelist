@@ -13,16 +13,24 @@ const HeroSection: FC = () => {
         src="/hero.jpg"
         alt="Hero Background"
         fill
-        className="object-cover brightness-[0.7]"
+        className="object-cover brightness-75"
         priority
       />
 
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-600/95 via-primary-500/90 to-secondary-500/90" />
+
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-        <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-          Discover the Best Telegram Communities
-        </h1>
-        <p className="mt-6 max-w-2xl text-xl text-gray-100">
+        <div className="mb-4 flex items-baseline justify-center space-x-2">
+          <h1 className="text-6xl font-bold text-white drop-shadow-lg sm:text-7xl md:text-8xl">
+            Bluppy
+          </h1>
+          <span className="text-lg font-medium text-accent-200 drop-shadow sm:text-xl">
+            for Telegram
+          </span>
+        </div>
+        <p className="max-w-2xl text-xl text-white/95 drop-shadow-md sm:text-2xl">
           Join millions of users in the most engaging Telegram groups and channels.
           Find your community or list your own in minutes.
         </p>
@@ -30,9 +38,9 @@ const HeroSection: FC = () => {
         {/* Search Bar */}
         <div className="mt-8 w-full max-w-2xl">
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
               <MagnifyingGlassIcon
-                className="h-5 w-5 text-gray-400"
+                className="h-6 w-6 text-secondary-400"
                 aria-hidden="true"
               />
             </div>
@@ -40,12 +48,21 @@ const HeroSection: FC = () => {
               type="search"
               placeholder="Search for groups..."
               onChange={(e) => setQuery(e.target.value)}
-              className="block w-full rounded-lg border border-transparent bg-white/90 py-3 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-500 backdrop-blur-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-lg"
+              className="block w-full rounded-xl border-2 border-white/20 bg-white/90 py-4 pl-12 pr-4 text-lg leading-6 text-primary-900 placeholder-secondary-400 shadow-xl backdrop-blur-sm transition-all focus:border-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500/50"
             />
           </div>
-          <p className="mt-3 text-sm text-gray-200">
-            Popular: gaming, crypto, anime, tech, education
-          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-white/90">
+            <span>Popular:</span>
+            {['gaming', 'crypto', 'anime', 'tech', 'education'].map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setQuery(tag)}
+                className="rounded-full bg-white/20 px-3 py-1 font-medium shadow-sm backdrop-blur-sm transition-all hover:bg-white/30 hover:shadow-md"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

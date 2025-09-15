@@ -31,10 +31,15 @@ const Header: FC = () => {
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <span className={`text-xl font-bold ${
-                isScrolled ? 'text-primary-600' : 'text-white'
+              <span className={`text-2xl font-bold ${
+                isScrolled ? 'text-primary-500' : 'text-white'
               }`}>
-                TeleList
+                Bluppy
+              </span>
+              <span className={`text-sm font-medium ${
+                isScrolled ? 'text-accent-500' : 'text-accent-300'
+              }`}>
+                for Telegram
               </span>
             </Link>
           </div>
@@ -45,7 +50,7 @@ const Header: FC = () => {
                 <div className="relative">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <MagnifyingGlassIcon
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-primary-400"
                       aria-hidden="true"
                     />
                   </div>
@@ -54,11 +59,11 @@ const Header: FC = () => {
                     placeholder="Search groups..."
                     value={filters.query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="block w-full rounded-lg border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 placeholder-gray-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm"
+                    className="block w-full rounded-lg border-2 border-primary-100 bg-white py-2 pl-10 pr-3 leading-5 placeholder-primary-300 shadow-sm transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <AdjustmentsHorizontalIcon
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-primary-400"
                       aria-hidden="true"
                     />
                   </div>
@@ -70,21 +75,21 @@ const Header: FC = () => {
           <div className="flex items-center space-x-4">
             <Link
               href="/groups/new"
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
                 isScrolled
-                  ? 'bg-primary-500 text-white hover:bg-primary-600'
+                  ? 'bg-secondary-500 text-white shadow-lg shadow-secondary-500/20 hover:bg-secondary-600 hover:shadow-secondary-500/30'
                   : 'bg-white/20 text-white backdrop-blur-sm hover:bg-white/30'
-              } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2`}
+              } focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2`}
             >
               Add Group
             </Link>
             <Link
               href="/dashboard"
-              className={`hidden rounded-lg px-4 py-2 text-sm font-medium transition-colors sm:block ${
+              className={`hidden rounded-lg px-4 py-2 text-sm font-medium transition-all sm:block ${
                 isScrolled
-                  ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                  ? 'bg-accent-500 text-white shadow-lg shadow-accent-500/20 hover:bg-accent-600 hover:shadow-accent-500/30'
                   : 'bg-white/10 text-white backdrop-blur-sm hover:bg-white/20'
-              } focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2`}
+              } focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2`}
             >
               Dashboard
             </Link>

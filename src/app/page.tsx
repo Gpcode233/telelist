@@ -12,7 +12,7 @@ export default function Home() {
   const { filteredGroups, filters, resetFilters } = useSearchStore()
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background-light">
       <Header />
       <HeroSection />
       <main>
@@ -26,7 +26,7 @@ export default function Home() {
               {(filters.category || filters.language || filters.tags.length > 0) && (
                 <button
                   onClick={resetFilters}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="w-full rounded-lg border-2 border-primary-100 bg-white px-4 py-2 text-sm font-medium text-primary-600 shadow-sm transition-all hover:border-primary-200 hover:bg-primary-50"
                 >
                   Reset Filters
                 </button>
@@ -36,12 +36,12 @@ export default function Home() {
             {/* Main content */}
             <div className="flex-1 space-y-8">
               <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-primary-900">
                   {filters.category || filters.language || filters.tags.length > 0
                     ? 'Search Results'
                     : 'Recently Bumped Groups'}
                 </h1>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-secondary-600">
                   {filteredGroups.length} groups found
                 </span>
               </div>
@@ -53,9 +53,9 @@ export default function Home() {
               </div>
 
               {filteredGroups.length === 0 && (
-                <div className="rounded-lg border-2 border-dashed border-gray-300 p-12 text-center">
-                  <h3 className="text-lg font-medium text-gray-900">No groups found</h3>
-                  <p className="mt-2 text-sm text-gray-500">
+                <div className="rounded-xl border-2 border-dashed border-primary-100 bg-primary-50/50 p-12 text-center">
+                  <h3 className="text-lg font-medium text-primary-900">No groups found</h3>
+                  <p className="mt-2 text-sm text-primary-600">
                     Try adjusting your filters or search query
                   </p>
                 </div>
