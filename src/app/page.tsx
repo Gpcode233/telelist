@@ -1,6 +1,7 @@
 'use client'
 
 import Header from '@/components/Header'
+import HeroSection from '@/components/HeroSection'
 import GroupCard from '@/components/GroupCard'
 import CategoryFilter from '@/components/CategoryFilter'
 import TagFilter from '@/components/TagFilter'
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
+      <HeroSection />
       <main>
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex gap-8">
